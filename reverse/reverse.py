@@ -38,5 +38,24 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    # Start a new linked list at head, then:
+    #   Each node adds a node of its value to the head of the new list
+    #       then passed recursively to next node
+    #       (constant-time operation, done n times)(O(n))
+    #   Head of the new list is assigned as head of list.
+    #       (constant-time operation, done once)(O(1))
+    #   -> overall runtime O(n), since O(n) operations are independent, not recursive --
+    #                                   at each stage of recursion, operation is O(1)
+    def reverse_list(self, node=None, prev=None):
+        if not self.head:
+            return None
+        if not prev:
+            prev = LinkedList()
+        if not node:
+            node = self.head
+        prev.add_to_head(node.value)
+        if node.next_node:
+            self.reverse_list(node.next_node, prev)
+        if node == self.head and prev.head != None:
+            self.head = prev.head
+        return prev
