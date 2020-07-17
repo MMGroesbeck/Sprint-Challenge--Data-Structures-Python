@@ -28,6 +28,11 @@ duplicates = []  # Return the list of duplicates in this data structure
 # same logic but list comprehension:
 # duplicates = [i for i in names_1 for j in names_2 if i == j] # 1.63 seconds
 
+# remove if/if syntax, but still in logic:
+# for name in names_1:
+#     if name in names_2:
+#         duplicates.append(name)
+
 # Use a binary search tree
 # Checks to see if each name is already in.
 
@@ -43,15 +48,15 @@ duplicates = []  # Return the list of duplicates in this data structure
 #             duplicates.append(m)
 #     else:
 #         name_tree.insert(m)
-# 0.76 seconds, O(log n) time average
+# # 0.76 seconds, O(log n) time average
 
 # # Stretch version:
-# x = set(names_1)
-# y = set(names_2)
-# z = x.difference(y) # returns elements in x but not in y (i.e. elements only in x)
-# q = x.difference(z) # returns elements in x but not in z, e.g. elements in x and in y (duplicates)
-# duplicates = [i for i in q] #.0050 seconds
-# duplicates = [i for i in set(names_1).difference(set(names_1).difference(set(names_2)))] #.0050 seconds
+x = set(names_1)
+y = set(names_2)
+z = x.difference(y) # returns elements in x but not in y (i.e. elements only in x)
+q = x.difference(z) # returns elements in x but not in z, e.g. elements in x and in y (duplicates)
+duplicates = [i for i in q] #.0050 seconds
+duplicates = [i for i in set(names_1).difference(set(names_1).difference(set(names_2)))] #.0050 seconds
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")

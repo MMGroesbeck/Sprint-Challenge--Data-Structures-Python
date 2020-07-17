@@ -45,18 +45,21 @@ class BSTNode:
             return None
     
     def contains(self, target):
+        comp = self.compare(target, self.value)
         if target == self.value:
             return True
-        elif self.compare(target, self.value) == -1:
+        elif comp == -1:
             if self.left:
                 return self.left.contains(target)
             else:
                 return False
-        else:
+        elif comp == 1:
             if self.right:
                 return self.right.contains(target)
             else:
                 return False
+        else:
+            return False
 
     def for_each(self, fn):
         fn(self.value)
