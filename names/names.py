@@ -30,6 +30,7 @@ duplicates = []  # Return the list of duplicates in this data structure
 # duplicates = [i for i in q] #.0050 seconds
 
 # same logic as above, but list comprehension instead of variable assignment:
+duplicates = [i for i in set(names_1).difference(set(names_1).difference(set(names_2)))] #.0050 seconds
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
